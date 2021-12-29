@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import Loader from '../components/Loader';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -21,7 +22,7 @@ const News = ({ simplified }) => {
 		count: simplified ? 6 : 15,
 	});
 
-	if (isFetching) return 'Loading.......';
+	if (isFetching) return <Loader />;
 	if (!cryptoNews?.value) return 'No News Found At This Time..';
 	if (isError) return 'Error inNews Section';
 	return (
